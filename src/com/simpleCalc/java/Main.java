@@ -1,18 +1,78 @@
 package com.simpleCalc.java;
+
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
+
+        String s1 = getInput("Enter a numberic value: ");
+        String s2 = getInput("Enter a numberic value: ");
+        String op = getInput("Choose an operation (+ - * /): ");
+
+        double result = 0;
+
+        try {
+            switch (op) {
+                case "+":
+                    result = addValues(s1, s2);
+                    break;
+                case "-":
+                    result = subtractValues(s1, s2);
+                    break;
+                case "*":
+                    result = multiplyValues(s1, s2);
+                    break;
+                case "/":
+                    result = divideValues(s1, s2);
+                    break;
+                default:
+                    System.out.println("Unrecognised operation!");
+                    return;
+            }
+
+            System.out.println("The answer is: " + result);
+
+        } catch (Exception e) {
+                System.out.println("Number formatting exception" + e.getMessage());
+
+        };
+
+
+    }
+
+    private static double addValues(String value1, String value2) {
+        double d1 = Double.parseDouble(value1);
+        double d2 = Double.parseDouble(value2);
+
+        return d1 + d2;
+    }
+
+    private static double subtractValues(String value1, String value2) {
+        double d1 = Double.parseDouble(value1);
+        double d2 = Double.parseDouble(value2);
+
+        return d1 - d2;
+    }
+
+    private static double multiplyValues(String value1, String value2) {
+        double d1 = Double.parseDouble(value1);
+        double d2 = Double.parseDouble(value2);
+
+        return d1 * d2;
+    }
+
+    private static double divideValues(String value1, String value2) {
+        double d1 = Double.parseDouble(value1);
+        double d2 = Double.parseDouble(value2);
+
+        return d1 / d2;
+
+    }
+
+    private static String getInput(String prompt) {
+        System.out.print(prompt);
         Scanner sc = new Scanner(System.in);
-
-        System.out.print("Enter a number: ");
-        double firstNumber = sc.nextInt();
-
-        System.out.print("Enter another number to add: ");
-        double secondNumber = sc.nextInt();
-
-        double answer = firstNumber + secondNumber;
-        System.out.println("The answer is: " + answer);
+        return sc.nextLine();
     }
 }
